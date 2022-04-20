@@ -6,11 +6,15 @@ import {GatewayStatus, useGateway} from '@civic/solana-gateway-react';
 import {CandyMachine} from './candy-machine';
 
 
+
+
 export const CTAButton = styled(Button)`
+    font-family: 'BBBOcelot' !important;
   display: block !important;
-  margin: 0 auto !important;
+  margin: 15px auto !important;
+  padding: 5px 0px 0px 0px !important;
   background-color: var(--mint-text-color) !important;
-  min-width: 120px !important;
+  min-width: 150px !important;
   font-size: 1em !important;
 `;
 

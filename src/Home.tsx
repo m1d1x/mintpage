@@ -1,3 +1,5 @@
+
+
 import {useEffect, useState} from "react";
 import styled from "styled-components";
 import confetti from "canvas-confetti";
@@ -23,72 +25,82 @@ const cluster = process.env.REACT_APP_SOLANA_NETWORK!.toString();
 const decimals = process.env.REACT_APP_SPL_TOKEN_TO_MINT_DECIMALS ? +process.env.REACT_APP_SPL_TOKEN_TO_MINT_DECIMALS!.toString() : 9;
 const splTokenName = process.env.REACT_APP_SPL_TOKEN_TO_MINT_NAME ? process.env.REACT_APP_SPL_TOKEN_TO_MINT_NAME.toString() : "TOKEN";
 
+//CONT MENU
 const WalletContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  height: 160px;
+  width: auto;
+  flex-wrap: nowrap;
+  align-items: center;
   justify-content: center;
+  // background-color: red;
 `;
 
+// WALLET AMOUT
 const WalletAmount = styled.div`
   color: black;
-  width: auto;
-  padding: 5px 5px 5px 16px;
-  min-width: 48px;
-  min-height: auto;
+  width: 370px;
+  box-shadow: 5px 5px 20px 5px rgba(0,0,0,0.3);
+  padding: 7px 0px 5px 0px;
   border-radius: 12px;
-  background-color: var(--main-text-color);
-  box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
-  box-sizing: border-box;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #ff76ff;
+  text-shadow: 1px 1px 1px #b314b3;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   font-weight: 500;
-  line-height: 1.75;
-  text-transform: uppercase;
+  font-family: 'BBBOcelot';
+  font-size: 21px;
   border: 0;
   margin: 0;
-  display: inline-flex;
-  outline: 0;
+  display: flex;
   position: relative;
   align-items: center;
-  user-select: none;
-  vertical-align: middle;
-  justify-content: flex-start;
-  gap: 5px;
+  justify-content: space-around;
+  // gap: 5px;
 `;
 
+// ALL WALLET CONT
 const Wallet = styled.ul`
-  flex: 0 0 auto;
-  margin: 0;
-  padding: 0;
-`;
-//connect wallet button
-const ConnectButton = styled(WalletMultiButton)`
-  border-radius: 8px !important;
-  padding: 6px 16px;
-  background-color: #A62103;
+  // flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
+  padding: 0px 0px 0px 0px;
+  
+  
+  
+`;
+
+//phantom wallet button
+const ConnectButton = styled(WalletMultiButton)`
+
+  font-family: 'BBBOcelot';
+  text-shadow: 2px 2px 1px #130f68;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px 8px 8px 8px !important;
+  padding-top: 5px;
+  background-color: #5a52dc;
+  // margin-bottom: 5px;
+  margin: 5px auto;
   min-width: 100px;
   min-height: 50px;
-  font-size: 25px;
+  font-size: 65%;
+  box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.5);
+  
 `;
 
-const NFT = styled(Paper)`
-  min-width: 500px;
-  padding: 5px 20px 20px 20px;
-  flex: 1 1 auto;
-  background-color: var(--card-background-color) !important;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !important;
-`;
-
-const Des = styled(NFT)`
-  text-align: left;
-  padding-top: 0px;
-`;
+// const Des = styled(NFT)`
+//   text-align: left;
+//   padding-top: 0px;
+// `;
 
 
 const Card = styled(Paper)`
-  display: inline-block;
-  background-color: var(card-background-lighter-color) !important;
+  display: flex;
+  
+//   background-color: var(card-background-lighter-color) !important;
   margin: 5px;
   min-width: 40px;
   padding: 24px;
@@ -97,15 +109,17 @@ const Card = styled(Paper)`
   }
 `;
 
+
+
 const MintButtonContainer = styled.div`
+
 button.MuiButton-contained:not(.MuiButton-containedPrimary).Mui-disabled {
-    color: #77458C;
+    color: black;
   }
   button.MuiButton-contained:not(.MuiButton-containedPrimary):hover,
   button.MuiButton-contained:not(.MuiButton-containedPrimary):focus {
     -webkit-animation: pulse 1s;
     animation: pulse 1s;
-    box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
   }
 
   @-webkit-keyframes pulse {
@@ -123,18 +137,20 @@ button.MuiButton-contained:not(.MuiButton-containedPrimary).Mui-disabled {
 
 const Logo = styled.div`
   flex: 0 0 auto;
+  
 
   img {
-    height: 60px;
+    max-height: 200px;
   }
 `;
 const Menu = styled.ul`
   list-style: none;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   flex: 1 0 auto;
 
   li {
-    margin: 0 12px;
+    margin: 0 0px;
 
     a {
       color: var(--main-text-color);
@@ -176,54 +192,65 @@ const SolExplorerLink = styled.a`
   }
 `;
 
+// ALL CONT
 const MainContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  margin-right: 4%;
-  margin-left: 4%;
+  margin-top: 0%;
+  margin-bottom: 0px;
+  margin-right: 3%;
+  margin-left: 1%;
   text-align: center;
-  justify-content: center;
+  // background-color: red;
 `;
 
 //Mint Box
 const MintContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex: 1 1 auto;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+//   flex: 1 1 auto;
+  flex-wrap: nowrap;
+  height: 70%;
+  align-items: center;
+  // background-color: red;
 `;
 
 const DesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
-  gap: 20px;
+  width: 80%;
+  // background-color: red;
+
+  // flex: 1 1 auto;
+  
 `;
 
 const Price = styled(Chip)`
-  position: absolute;
+  position: fixed;
   margin: 15px;
   font-weight: bold;
-  font-size: 0.8em !important;
-  font-family: 'Red Hat Mono', monospace;
+  font-size: 40% !important;
+  font-family: 'BBBOcelot';
+  
 `;
 
 const Image = styled.img`
-  height: 400px;
-  width: auto;
+  height: auto;
+  width: 20%;
   border-radius: 7px;
   box-shadow: 5px 5px 40px 5px rgba(0,0,0,0.5);
+  background-color: var(--nft-back-color);
+  margin: 0;
+  padding: 0;
 `;
 
 const BorderLinearProgress = styled(LinearProgress)`
-  margin: 20px;
+  margin: 5px;
   height: 10px !important;
   border-radius: 30px;
-  border: 2px solid white;
-  box-shadow: 5px 5px 40px 5px rgba(0,0,0,0.5);
+  border: 10px solid white;
+  
   background-color:var(--main-text-color) !important;
   
   > div.MuiLinearProgress-barColorPrimary{
@@ -237,30 +264,35 @@ const BorderLinearProgress = styled(LinearProgress)`
 `;
 
 const ShimmerTitle = styled.h1`
-  margin: 20px auto;
+  margin-top: -30px;
+  margin-bottom: 10px;
+  font-size: 270%;
   text-transform: uppercase;
+  
   animation: glow 2s ease-in-out infinite alternate;
   color: var(--main-text-color);
   @keyframes glow {
     from {
-      text-shadow: 0 0 20px var(--main-text-color);
+      text-shadow: 0 0 5px var(--main-text-color);
     }
     to {
-      text-shadow: 0 0 30px var(--title-text-color), 0 0 10px var(--title-text-color);
+      text-shadow: 0 0 7px var(--title-text-color), 0 0 20px var(--title-text-color);
     }
   }
 `;
 
 const GoldTitle = styled.h2`
   color: var(--title-text-color);
+  
 `;
 
 const LogoAligner = styled.div`
   display: flex;
   align-items: center;
+  
 
   img {
-    max-height: 35px;
+    max-height: 200px;
     margin-right: 10px;
   }
 `;
@@ -551,15 +583,10 @@ const Home = (props: HomeProps) => {
         <main>
             <MainContainer>
                 <WalletContainer>
-                    <Logo><a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer"><img alt=""
-                                                                                                          src="logo.png"/></a></Logo>
+                    <Logo><a href="https://www.otakuzzz.world/"><img alt="HOME"
+                                                                                                          src="HOMEBUTTON.webp"/></a></Logo>
                     <Menu>
-                        <li><a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">MINT</a>
-                        </li>
-                        <li><a href="http://localhost:3000/" target="_blank"
-                               rel="noopener noreferrer">ABOUT</a></li>
-                        <li><a href="http://localhost:3000/" target="_blank"
-                               rel="noopener noreferrer">TEAM</a></li>
+                    
                     </Menu>
                     <Wallet>
                         {wallet ?
@@ -567,16 +594,24 @@ const Home = (props: HomeProps) => {
                             <ConnectButton>Connect Wallet</ConnectButton>}
                     </Wallet>
                 </WalletContainer>
-                <ShimmerTitle>MINT IS LIVE !</ShimmerTitle>
+
+
+
+
+                <ShimmerTitle>MINT IS LIVE!</ShimmerTitle>
                 <br/>
+
+
+
+
                 <MintContainer>
                     <DesContainer>
-                        <NFT elevation={3}>
-                            <h2>My NFT</h2>
+                        
+                            
                             <br/>
                             <div><Price
                                 label={isActive && whitelistEnabled && (whitelistTokenBalance > 0) ? (whitelistPrice + " " + priceLabel) : (price + " " + priceLabel)}/><Image
-                                src="1.png"
+                                src="NFT_SEQ.GIF"
                                 alt="NFT To Mint"/></div>
                             <br/>
                             {wallet && isActive && whitelistEnabled && (whitelistTokenBalance > 0) && isBurnToken &&
@@ -656,27 +691,7 @@ const Home = (props: HomeProps) => {
                             <br/>
                             {wallet && isActive && solanaExplorerLink &&
                               <SolExplorerLink href={solanaExplorerLink} target="_blank">View on Solscan</SolExplorerLink>}
-                        </NFT>
-                    </DesContainer>
-                    <DesContainer>
-                        <Des elevation={2}>
-                            <LogoAligner><img src="logo.png" alt=""></img><GoldTitle>Я СОСУ</GoldTitle></LogoAligner>
-                            <p>богдан гей И БОМЖ богдан гей И БОМЖ богдан гей И БОМЖ богдан гей И БОМЖ богдан гей богдан гей богдан гей </p>
-                            <p>богдан гей богдан гей богдан гей богдан гей богдан гей богдан гей богдан гей </p>
-                            <p>богдан гей богдан гей богдан гей богдан гей богдан гей богдан гей богдан гей .</p>
-                        </Des>
-                        <Des elevation={2}>
-                            <LogoAligner><img src="logo.png" alt=""></img><GoldTitle>ОГРОМНУЮ</GoldTitle></LogoAligner>
-                            <p>богдан гей богдан гей богдан гей богдан гей богдан гей богдан гей </p>
-                            <p>богдан гей богдан гей богдан гей богдан гей богдан гей богдан гей </p>
-                            <p>богдан гей богдан гей богдан гей богдан гей богдан гей богдан гей .</p>
-                        </Des>
-                        <Des elevation={2}>
-                            <LogoAligner><img src="logo.png" alt=""></img><GoldTitle>БЕБРУ</GoldTitle></LogoAligner>
-                            <p>богдан гей богдан гей богдан гей богдан гей </p>
-                            <p>богдан гей богдан гей богдан гей богдан гей </p>
-                            <p>богдан гей богдан гей богдан гей богдан гей </p>
-                        </Des>
+                        
                     </DesContainer>
                 </MintContainer>
             </MainContainer>

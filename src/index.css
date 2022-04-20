@@ -1,12 +1,11 @@
 body {
   margin: 0;
-  font-family: 'Red Hat Mono', monospace;
+  font-family: 'Caja', 'Lilian', 'BBBOcelot';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #303030;
   color: #FFFFFF;
 }
 
 code {
-  font-family: 'Red Hat Mono', monospace;
+  font-family: 'Caja', 'Lilian', 'BBBOcelot';
 }

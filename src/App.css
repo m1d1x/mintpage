@@ -1,21 +1,41 @@
+@font-face {
+  font-family: 'BBBOcelot';
+  src: url(fonts/BBBOcelot-Regular.otf);
+}
+
+@font-face {
+  font-family: 'Lilian';
+  src: url(fonts/Lilian.ttf);
+}
+
+@font-face {
+  font-family: 'Caja';
+  src: url(fonts/Caja.ttf);
+}
+
+
 /* Customize your main colors in :root variables */
 :root {
-  --main-background-color: #f26d99;
-  --card-background-color: #41f2ba;
-  --card-background-lighter-color: #7A7F92;
-  --main-text-color:#F7F6F4;
-  --title-text-color:#ffffff;
-  --mint-text-color: #3dffa8;
+  --main-background-color: #c7e0ff;
+  --card-background-color: #1cf484;
+  --card-background: url("img/BACK_OPTI2.gif");
+  --card-background-lighter-color: #9016a8;
+  --main-text-color:#ffffff;
+  --title-text-color:#005897; 
+  --mint-text-color: #ff76ff;
+  --nft-back-color: #c7e0ff;
 }
 
 body{
   background-color:var(--main-background-color);
-  background: url("img/background.png");
-  background-size: cover;
-
-    
-  font-family: 'Red Hat Mono', monospace;
-  font-size: 1.9em;
+  background: url("img/TOP_HUD.webp"), url("img/START_HUD.webp"), url("img/BACK_OPTI2.gif");
+  background-repeat: no-repeat, repeat-x, no-repeat;
+  background-position: top center, bottom center, center center;
+  background-attachment: fixed, fixed, fixed;
+  background-size: 100% auto, 100% auto, auto 120%;
+ 
+  font-family: 'Caja', 'Lilian', 'BBBOcelot';
+  font-size: 2.1em;
 }
 
 h2, p{
@@ -24,6 +44,7 @@ h2, p{
 
 h3{
 font-weight: normal;
+text-shadow: 3px 2px 1px #025824;
 }
 
 
