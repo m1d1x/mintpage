@@ -1,0 +1,13 @@
+ {
+  "short_name": "OTAKUZZZ",
+  "name": "OTAKUZZZ",
+  "icons": [
+    {
+      "src": "2.png",
+      "type": "image/png",
+      "sizes": "358x358"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone"
+}
